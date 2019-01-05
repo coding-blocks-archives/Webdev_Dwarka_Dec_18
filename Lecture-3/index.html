@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="theme-color" content="#db5945">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form method='post' action='#'>
+        <input type='text' placeholder='username' name='name' required>
+        <input type='email' placeholder='email' name='email' required>
+        <input type='number' placeholder='number' min=100 max=200 required>
+        <p>
+            <input type='radio' value='mobile' name='product' > mobile
+            <input type='radio' value='tablet' name='product' required> Tablet
+            <input type='radio' value='desktop' name='product'> Desktop
+        </p>
+       
+        <p>
+        <label for=''>Filter By:</label>
+        <input type='checkbox' name='size' value='size'>Size
+        <p>
+        <label for='price'> Price</label>
+        <input id='price' type='checkbox' name='price' value='1000'>1000 
+        <label for='price'>This is range 2000-3000</label>
+        <input id='price' type='checkbox' name='price' value='2000-3000'>2000-3000 
+       </p>
+        </p>
+        <!-- <input type='password' placeholder="password" name='secret' > -->
+        <input type='submit'>
+    </form>
+</body>
+</html>

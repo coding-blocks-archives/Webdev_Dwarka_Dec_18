@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+.box {
+    width: 33.33%;
+    height: 200px;
+}
+
+.box1 {
+    background: green;
+}
+
+.box2 {
+    background: blue;
+}
+
+.box3 {
+    background: orange;
+}
+
+.box4 {
+    background: violet;
+}
+
+.box5 {
+    background: red;
+}

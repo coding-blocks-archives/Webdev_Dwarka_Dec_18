@@ -1,0 +1,15 @@
+/* #side-section {
+    display: inline-block;
+    width: 29%;
+}
+#content-section {
+    display: inline-block;
+    width: 70%;
+} */
+
+
+@media(min-width: 800px) {
+  p {
+      color: blue;
+  }
+}

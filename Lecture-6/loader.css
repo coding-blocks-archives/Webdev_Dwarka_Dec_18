@@ -1,0 +1,38 @@
+.box {
+    background-color: blueviolet;
+    width: 50px;
+    height: 50px;
+    animation-name: loader;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transition: transform 1s, border-radius 1s;
+    transition-timing-function: ease-in;
+}
+
+@keyframes loader {
+    0% {
+        background-color: blueviolet;
+        border-radius: 0 0 0 0;
+        transform: rotate(0deg);
+    }
+    25% {
+        background-color: green;
+        border-radius: 0 0 0 50%; 
+        transform: rotate(90deg);
+    }
+    50% {
+        background-color: aquamarine;
+        border-radius: 0 0 50% 50%;
+        transform: rotate(180deg);
+    }
+    75% {
+        background-color: bisque;
+        border-radius: 0 50% 50% 50%;
+        transform: rotate(270deg);
+    }
+    100% {
+        background-color: brown;
+        border-radius: 50% 50% 50% 50%;
+        transform: rotate(360deg);
+    }
+}

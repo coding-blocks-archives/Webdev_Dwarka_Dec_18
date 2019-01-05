@@ -1,0 +1,23 @@
+body {
+    margin:0;
+}
+.align li {
+    display: inline-block;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.align {
+    background-color: gray;
+    color: white;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+@media(max-width: 600px) {
+    .align li {
+        display: block;
+    }
+    
+}

@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+.outerbox {
+    border: 1px solid brown;
+    width: 200px;
+    height: 200px;
+    color: red;
+
+}
+.innerbox {
+    border: 1px dashed green;
+    width: 100px;
+    height: 100px;
+}
