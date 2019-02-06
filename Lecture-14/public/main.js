@@ -24,11 +24,29 @@ function display() {
   
    let data = localStorage.getItem('todoArray')  
    let res = JSON.parse(data) || [];
-   res.forEach((val)=>{
-        generateNode(val);
-   })
+   if(res.length == 0) {
+     getTodo().then((data)=> (data.text()))
+     .then((data)=> {
+         res = JSON.parse(data)
+         console.log(res)
+         res.forEach((val)=>{
+            generateNode(val);
+         })
+    })
+   }
+   else 
+   {
+        (res).forEach((val)=>{
+            generateNode(val);
+        })
+   }
+   
 }
 
+/**
+ * @function - remove value from DOM
+ * @param {number} index - Index is the value of the button index
+ */
 function removeVal(index) {
    taskList.splice(index,1);
    saveLocalStorage(taskList);
@@ -42,6 +60,7 @@ function saveLocalStorage(arr) {
 
 function add() {
     let val = inp.value;
+    addtoServer(val);
     // Creating li from HTML document
     generateNode(val);
     taskList.push(val);
@@ -68,3 +87,12 @@ function generateNode(val) {
     result.appendChild(li);
 }
 
+function addtoServer(val) {
+    return fetch(`/addTodo?task=${val}`)
+   .then((data)=> data.text())
+   .then(data => console.log(data));
+}
+
+function getTodo() {
+    return fetch('/data');
+}
