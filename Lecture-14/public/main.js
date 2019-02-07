@@ -33,14 +33,30 @@ function display() {
             generateNode(val);
          })
     })
+   }else if(res.length != 0){
+    getTodo().then((data)=> (data.text()))
+    .then((data)=>{
+        if(JSON.parse(data).length == 0){
+            console.log('localstorage has some items but server array doesnot');
+            res.forEach((val)=>{
+                addtoServer(val);
+            });
+
+            makeList(res);
+        }
+    });
    }
    else 
    {
-        (res).forEach((val)=>{
-            generateNode(val);
-        })
+        makeList(res);
    }
    
+}
+
+let makeList = (res)=>{
+    (res).forEach((val)=>{
+        generateNode(val);
+    })
 }
 
 /**
@@ -81,10 +97,17 @@ function generateNode(val) {
     btn.addEventListener('click', function(){
         let index = taskList.indexOf(val);
         removeVal(index);
-        result.removeChild(this.parentElement);
-    })
+        removeValfromServer(index)
+        .then((data)=> data.text())
+        .then(data => data=="OK"?result.removeChild(this.parentElement):console.log("Problem on the server side"));
+        // result.removeChild(this.parentElement);
+    });
     li.appendChild(btn);
     result.appendChild(li);
+}
+
+let removeValfromServer = (index)=>{
+    return fetch(`/deleteTodo?index=${index}`);
 }
 
 function addtoServer(val) {
