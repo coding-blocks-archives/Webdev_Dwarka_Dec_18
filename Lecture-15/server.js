@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
- 
+app.use(bodyParser.text());
 const taskArray = [];
 /**
  * express.static 
