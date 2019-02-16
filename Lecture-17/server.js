@@ -5,8 +5,7 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-let Dbusername = 'aayush';
-let Dbpassword = 'aayush1234';
+let db = require('./db');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', express.static('public'));
@@ -25,26 +24,39 @@ app.post('/login', passport.authenticate('local',
 
 passport.use(new localStrategy(
     function(username, password, done) {
-         if(username != Dbusername) {
-              done(null,false)
-         }
-         if(password !== Dbpassword) {
-            done(null,false)
-         }
-
-         done(null, username);
-
+        db.findUser(username, function(data){
+            if(username != data[0].username) {
+              console.log("from db " + data[0].username);
+              console.log("from form" + username);
+               return done(null,false)
+           }
+           if(password !== data[0].password) {
+            console.log("from db " + data.password);
+            console.log("from form" + password);
+              return done(null,false)
+           }
+  
+           console.log(username);
+           return done(null, username);
+  
+        })
+       
     }
 ));
 
 passport.serializeUser(function(user, done){
-    done(null, user);
+    return done(null, user);
 });
 
 passport.deserializeUser(function(user, done){
-    done(null, user);
+    return done(null, user);
 });
 
+app.post('/signup', function(req, res){
+    db.addUser(req.body.username, req.body.password, function(){
+        res.sendStatus(200);
+    });
+})
 app.get('/success', function(req, res){
     if(req.user) {
         res.send("Login successfully");
@@ -62,4 +74,5 @@ app.get('/logout', function(req, res){
 
 app.listen(5000, function(){
     console.log("Server is running on 5000");
+    db.connectDb();
 })
