@@ -1,0 +1,20 @@
+
+<ul>
+    {{#each todo}}
+    <li>
+        <span>{{task}}</span> 
+        <span>{{done}}</span>
+         {{#if product}}
+            <span>{{product}}</span>
+         {{/if}}
+    </li>
+    {{/each}}
+    <button id='btn'>
+        Click
+    </button>
+</ul>
+<script>
+   document.getElementById('btn').onclick = function(){
+       console.log('Hello');
+   }
+</script>
